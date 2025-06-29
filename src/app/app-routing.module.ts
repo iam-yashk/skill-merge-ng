@@ -2,12 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'login', loadChildren: () => 
-    import('./modules/auth/auth.module').then(m => m.AuthModule) 
-  }, 
-  { path: 'dashboard', loadChildren: () => 
-    import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) 
-  }
+  { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) }, 
+  { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auth/login' }
 ];
 
 @NgModule({
