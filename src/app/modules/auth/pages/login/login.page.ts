@@ -2,8 +2,12 @@ import { Component } from "@angular/core";
 
 @Component({
     selector: 'app-login-page',
-    templateUrl: '/login.page.html',
+    templateUrl: './login.page.html',
     styleUrls: ['./login.page.scss']
 })
 
-export class LoginPage{}
+export class LoginPage{
+    constructor() {
+        console.log("LoginPage Loaded");
+    }
+}

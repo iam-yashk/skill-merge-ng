@@ -1,0 +1,65 @@
+<div class="teams-wrapper">
+
+    <div class="teams-container">
+      <!-- Header -->
+      <div class="teams-header">
+        <h1 class="teams-title">👥 Teams</h1>
+        <button class="add-team-btn" (click)="openModal()">+ Add Team</button>
+      </div>
+  
+      <!-- Team Grid -->
+      <div class="teams-grid">
+        <div class="team-card" *ngFor="let team of teams">
+          <div class="card-header">
+            <h2 class="team-name">{{ team.name }}</h2>
+            <button class="edit-btn" (click)="editTeam(team)">✏️</button>
+          </div>
+          <p class="team-description">{{ team.description }}</p>
+          <p class="team-meta">Created on: {{ team.createdAt }}</p>
+          <p class="team-meta">Members: {{ team.memberCount }}</p>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Modal -->
+    <div *ngIf="showModal" class="modal-backdrop">
+      <div class="modal-container">
+        <button class="modal-close-btn" (click)="closeModal()">×</button>
+  
+        <div class="modal-header">
+          <h2 class="modal-title">{{ isEditMode ? 'Edit Team' : 'Create New Team' }}</h2>
+          <p class="modal-subtitle">Add a name and description to get started</p>
+        </div>
+  
+        <form (ngSubmit)="submitTeam()" #teamForm="ngForm" novalidate class="team-form">
+          <div class="form-group">
+            <label for="name" class="form-label">Team Name</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newTeam.name" 
+              name="name" 
+              id="name"
+              required
+              class="form-input"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="description" class="form-label">Description</label>
+            <input 
+              type="text" 
+              [(ngModel)]="newTeam.description" 
+              name="description" 
+              id="description"
+              class="form-input"
+            />
+          </div>
+  
+          <div class="form-actions">
+            <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="submit-btn">{{ isEditMode ? 'Update' : 'Create' }}</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
